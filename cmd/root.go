@@ -3,6 +3,7 @@ package cmd
 import (
 	"os"
 
+	"github.com/arashnrim/tp/utils"
 	"github.com/spf13/cobra"
 )
 
@@ -24,4 +25,8 @@ func Execute() {
 	if err != nil {
 		os.Exit(1)
 	}
+}
+
+func init() {
+	utils.ValidateConfigFolder()
 }
