@@ -8,13 +8,15 @@ import (
 
 var rootCmd = &cobra.Command{
 	Use:   "tp",
-	Short: "A brief description of your application",
-	Long: `A longer description that spans multiple lines and likely contains
-examples and usage of using your application. For example:
+	Short: " ⚡️ Teleport to your projects and run tasks in an instant.",
+	Long: `tp is a simple tool that allows you to quickly get started
+with your work by handling the change of directory and running the
+tasks you set it up to do automatically.
 
-Cobra is a CLI library for Go that empowers applications.
-This application is a tool to generate the needed files
-to quickly create a Cobra application.`,
+To begin, use tp add <location>. This must be a valid location on your
+computer; otherwise, the program will return an error. To remove an
+existing location, use tp remove <location>. For more information, type
+tp help.`,
 }
 
 func Execute() {
