@@ -3,7 +3,7 @@ package cmd
 import (
 	"os"
 
-	"github.com/arashnrim/tp/utils"
+	"github.com/arashnrim/tp/internal"
 	"github.com/spf13/cobra"
 )
 
@@ -28,5 +28,5 @@ func Execute() {
 }
 
 func init() {
-	utils.ValidateConfigFolder()
+	internal.ValidateConfigFolder()
 }

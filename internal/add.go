@@ -1,19 +1,9 @@
-package utils
+package internal
 
 import (
 	"os"
 	"path/filepath"
 )
-
-func ValidateConfigFolder() error {
-	folderPath := filepath.Join(os.Getenv("HOME"), ".tp")
-	if _, err := os.Stat(folderPath); os.IsNotExist(err) {
-		if err := os.Mkdir(folderPath, 0777); err != nil {
-			return err
-		}
-	}
-	return nil
-}
 
 func VerifyLocationFolder(location string) error {
 	var folderPath string
