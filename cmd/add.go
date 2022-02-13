@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"log"
 
+	"github.com/arashnrim/tp/internal"
 	"github.com/spf13/cobra"
 )
 
@@ -27,7 +28,9 @@ wizard, use -s (or --skip-wizard).`,
 		} else if len(args) > 0 {
 			for _, location := range args {
 				// TODO: Implement adding of location
-				fmt.Println(location)
+				if err := internal.AddLocation(location); err != nil {
+					log.Fatal(err)
+				}
 			}
 		}
 	},

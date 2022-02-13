@@ -2,17 +2,22 @@ package internal
 
 import (
 	"os"
+	"path"
 	"path/filepath"
 )
 
-func VerifyLocationFolder(location string) error {
-	var folderPath string
-	if string([]rune(location)[0]) == "/" {
-		folderPath = location
-	} else {
-		folderPath = filepath.Join(os.Getenv("HOME"), location)
+func AddLocation(location string) error {
+	if err := VerifyLocationFolder(location); err != nil {
+		return err
 	}
-	if _, err := os.Stat(folderPath); os.IsNotExist(err) {
+	return nil
+}
+
+func VerifyLocationFolder(location string) error {
+	if !path.IsAbs(location) {
+		location = filepath.Join(os.Getenv("HOME"), location)
+	}
+	if _, err := os.Stat(location); os.IsNotExist(err) {
 		return err
 	}
 	return nil
