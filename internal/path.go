@@ -1,9 +1,17 @@
 package internal
 
 import (
+	"errors"
 	"os"
 	"path/filepath"
 )
+
+func CheckHomeVariable() error {
+	if _, exists := os.LookupEnv("HOME"); !exists {
+		return errors.New("HOME environment variable is not defined")
+	}
+	return nil
+}
 
 func ValidateConfigFolder() error {
 	folderPath := filepath.Join(os.Getenv("HOME"), ".tp")

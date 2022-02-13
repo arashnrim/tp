@@ -1,6 +1,7 @@
 package cmd
 
 import (
+	"log"
 	"os"
 
 	"github.com/arashnrim/tp/internal"
@@ -28,5 +29,11 @@ func Execute() {
 }
 
 func init() {
-	internal.ValidateConfigFolder()
+	if err := internal.CheckHomeVariable(); err != nil {
+		log.Fatal(err)
+	}
+
+	if err := internal.ValidateConfigFolder(); err != nil {
+		log.Fatal(err)
+	}
 }
