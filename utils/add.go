@@ -27,8 +27,3 @@ func VerifyLocationFolder(location string) error {
 	}
 	return nil
 }
-
-func StartAddLocationWizard(location string, folderPath string) error {
-	// TODO: Implement wizard
-	return nil
-}

@@ -4,7 +4,6 @@ import (
 	"fmt"
 	"log"
 
-	"github.com/arashnrim/tp/utils"
 	"github.com/spf13/cobra"
 )
 
@@ -27,13 +26,8 @@ wizard, use -s (or --skip-wizard).`,
 			log.Fatal(fmt.Errorf("at least 1 location name expected, received 0"))
 		} else if len(args) > 0 {
 			for _, location := range args {
-				if err := utils.VerifyLocationFolder(location); err != nil {
-					log.Fatal(err)
-				} else {
-					if err := utils.StartAddLocationWizard(); err != nil {
-
-					}
-				}
+				// TODO: Implement adding of location
+				fmt.Println(location)
 			}
 		}
 	},
