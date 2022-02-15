@@ -6,6 +6,11 @@ import (
 	"path/filepath"
 )
 
+type ConfigFile struct {
+	Location string   `yaml:location`
+	Commands []string `yaml:commands`
+}
+
 func CheckHomeVariable() error {
 	if _, exists := os.LookupEnv("HOME"); !exists {
 		return errors.New("HOME environment variable is not defined")
