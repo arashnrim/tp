@@ -13,7 +13,7 @@ func init() {
 }
 
 var addCommand = &cobra.Command{
-	Use:   "add",
+	Use:   "add <name> <location>",
 	Short: "Adds one or more locations to teleport to",
 	Long: `When running the command, tp will create a new config file
 for this location at the config folder ($HOME/.tp). You may then edit
