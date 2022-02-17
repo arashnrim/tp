@@ -20,17 +20,17 @@ for this location at the config folder ($HOME/.tp). You may then edit
 the contents of this file afterwards and add additional steps to run
 from there.
 
-A wizard will guide you through the creation of this file. To skip the
-wizard, use -s (or --skip-wizard).`,
+This command requires two arguments: a name and a location. To use the
+command, run tp add <name> <location>.`,
 	Run: func(cmd *cobra.Command, args []string) {
-		if len(args) == 0 {
-			log.Fatal(fmt.Errorf("at least 1 location name expected, received 0"))
-		} else if len(args) > 0 {
-			for _, location := range args {
-				// TODO: Implement adding of location
-				if err := internal.AddLocation(location); err != nil {
-					log.Fatal(err)
-				}
+		if len(args) != 2 {
+			log.Fatal(fmt.Errorf("at least 2 arguments expected, received %d", len(args)))
+		} else {
+			// TODO: Implement adding of location
+			name := args[0]
+			location := args[1]
+			if err := internal.AddLocation(name, location); err != nil {
+				log.Fatal(err)
 			}
 		}
 	},
