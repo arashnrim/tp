@@ -2,6 +2,7 @@ package internal
 
 import (
 	"errors"
+	"fmt"
 	"os"
 	"path/filepath"
 )
@@ -24,6 +25,13 @@ func ValidateConfigFolder() error {
 		if err := os.Mkdir(folderPath, 0777); err != nil {
 			return err
 		}
+	}
+	return nil
+}
+
+func VerifyNameExists(name string) error {
+	if _, err := os.Stat(filepath.Join(os.Getenv("HOME"), ".tp", fmt.Sprintf("%s.yaml", name))); !os.IsNotExist(err) {
+		return fmt.Errorf("location of name %s already exists", name)
 	}
 	return nil
 }

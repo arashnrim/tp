@@ -22,7 +22,7 @@ func AddLocation(name string, location string) error {
 	}
 	location = ConvertToAbsolutePath(location)
 
-	if err := VerifyName(name); err != nil {
+	if err := VerifyNameExists(name); err != nil {
 		return err
 	}
 
@@ -40,7 +40,7 @@ func AddLocation(name string, location string) error {
 	}
 
 	fmt.Printf("All done! tp has set up the location; to configure, go to ~/.tp/%s.yaml.\n", name)
-	fmt.Printf("You may now use tp to %s to instantly teleport and run the commands.\n", location)
+	fmt.Printf("You may now use `tp to %s` to instantly teleport and run the commands.\n", name)
 
 	return nil
 }
@@ -49,13 +49,6 @@ func VerifyLocationFolder(location string) error {
 	location = ConvertToAbsolutePath(location)
 	if _, err := os.Stat(location); os.IsNotExist(err) {
 		return err
-	}
-	return nil
-}
-
-func VerifyName(name string) error {
-	if _, err := os.Stat(filepath.Join(os.Getenv("HOME"), ".tp", fmt.Sprintf("%s.yaml", name))); !os.IsNotExist(err) {
-		return fmt.Errorf("location of name %s already exists", name)
 	}
 	return nil
 }

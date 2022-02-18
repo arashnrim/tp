@@ -18,13 +18,13 @@ var addCommand = &cobra.Command{
 	Long: `When running the command, tp will create a new config file
 for this location at the config folder ($HOME/.tp). You may then edit
 the contents of this file afterwards and add additional steps to run
-from there.
+from there. If the location is invalid, an error will be thrown.
 
 This command requires two arguments: a name and a location. To use the
 command, run tp add <name> <location>.`,
 	Run: func(cmd *cobra.Command, args []string) {
 		if len(args) != 2 {
-			log.Fatal(fmt.Errorf("at least 2 arguments expected, received %d", len(args)))
+			log.Fatal(fmt.Errorf("2 arguments expected, received %d", len(args)))
 		} else {
 			// TODO: Implement adding of location
 			name := args[0]
