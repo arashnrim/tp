@@ -51,18 +51,23 @@ func ListLocations() error {
 	}
 
 	// Pretty prints the results
-	fmt.Println("Here's a list of all the locations set up:")
-	fmt.Print("Name")
-	fmt.Print(strings.Repeat(" ", (lengthiestName - len("Name"))))
-	fmt.Print(" | ")
-	fmt.Print("Location")
-	fmt.Println(strings.Repeat(" ", (lengthiestPath - len("Location"))))
-	fmt.Println(strings.Repeat("-", (lengthiestName-len("Name"))+(lengthiestPath-len("Location"))))
-	for _, listItem := range listItems {
-		name, location := listItem[0], listItem[1]
-		fmt.Print(name)
-		fmt.Print(strings.Repeat(" ", (lengthiestName - len(name) + 2)))
-		fmt.Println(location)
+	if len(listItems) > 1 {
+		fmt.Println("Here's a list of all the locations set up:")
+		fmt.Print("Name")
+		fmt.Print(strings.Repeat(" ", (lengthiestName - len("Name"))))
+		fmt.Print(" | ")
+		fmt.Print("Location")
+		fmt.Println(strings.Repeat(" ", (lengthiestPath - len("Location"))))
+		fmt.Println(strings.Repeat("-", (lengthiestName-len("Name"))+(lengthiestPath-len("Location"))))
+		for _, listItem := range listItems {
+			name, location := listItem[0], listItem[1]
+			fmt.Print(name)
+			fmt.Print(strings.Repeat(" ", (lengthiestName - len(name) + 2)))
+			fmt.Println(location)
+		}
+	} else {
+		fmt.Println("There are no locations set up.")
+		fmt.Println("Try adding a location with `tp add <name> <location>` and try again!")
 	}
 
 	return nil
