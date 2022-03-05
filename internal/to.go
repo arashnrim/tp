@@ -44,16 +44,12 @@ func TeleportToLocation(name string) error {
 
 		stdout, err := cmd.StdoutPipe()
 		if err != nil {
-			fmt.Println()
-			color.New(color.FgRed).Add(color.BgWhite).Add(color.Bold).Printf("❌ %s failed to run.", command)
-			fmt.Println("\n")
+			color.New(color.FgRed).Add(color.Bold).Printf("\n❌ `%s` failed to run.\n\n", command)
 			return err
 		}
 
 		if err = cmd.Start(); err != nil {
-			fmt.Println()
-			color.New(color.FgRed).Add(color.BgWhite).Add(color.Bold).Printf("❌ %s failed to run.", command)
-			fmt.Println("\n")
+			color.New(color.FgRed).Add(color.Bold).Printf("\n❌ `%s` failed to run.\n\n", command)
 			return err
 		}
 
@@ -63,9 +59,7 @@ func TeleportToLocation(name string) error {
 			fmt.Println(output)
 		}
 		cmd.Wait()
-		fmt.Println()
-		color.New(color.FgGreen).Add(color.BgWhite).Add(color.Bold).Printf("✓ %s ran successfully.", command)
-		fmt.Println("\n")
+		color.New(color.FgGreen).Add(color.Bold).Printf("\n✓ `%s` ran successfully.\n\n", command)
 	}
 
 	return nil
