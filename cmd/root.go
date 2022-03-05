@@ -1,10 +1,10 @@
 package cmd
 
 import (
-	"log"
 	"os"
 
 	"github.com/arashnrim/tp/internal"
+	"github.com/fatih/color"
 	"github.com/spf13/cobra"
 )
 
@@ -15,10 +15,10 @@ var rootCmd = &cobra.Command{
 with your work by handling the change of directory and running the
 tasks you set it up to do automatically.
 
-To begin, use tp add <location>. This must be a valid location on your
+To begin, use ` + "`tp add <location>`" + `. This must be a valid location on your
 computer; otherwise, the program will return an error. To remove an
-existing location, use tp remove <location>. For more information, type
-tp help.`,
+existing location, use ` + "`tp remove <location>`" + `. For more information, type
+` + "`tp help`.",
 }
 
 func Execute() {
@@ -30,10 +30,12 @@ func Execute() {
 
 func init() {
 	if err := internal.CheckHomeVariable(); err != nil {
-		log.Fatal(err)
+		color.New(color.FgRed).Add(color.Bold).Printf("Error: %s\n", err)
+		os.Exit(1)
 	}
 
 	if err := internal.ValidateConfigFolder(); err != nil {
-		log.Fatal(err)
+		color.New(color.FgRed).Add(color.Bold).Printf("Error: %s\n", err)
+		os.Exit(1)
 	}
 }

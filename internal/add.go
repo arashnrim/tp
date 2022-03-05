@@ -6,6 +6,7 @@ import (
 	"path"
 	"path/filepath"
 
+	"github.com/fatih/color"
 	"gopkg.in/yaml.v2"
 )
 
@@ -39,7 +40,7 @@ func AddLocation(name string, location string) error {
 		return err
 	}
 
-	fmt.Printf("All done! tp has set up the location; to configure, go to ~/.tp/%s.yaml.\n", name)
+	color.New(color.FgGreen).Add(color.Bold).Printf("All done! tp has set up the location; to configure, go to ~/.tp/%s.yaml.\n", name)
 	fmt.Printf("You may now use `tp to %s` to instantly teleport and run the commands.\n", name)
 
 	return nil

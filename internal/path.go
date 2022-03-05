@@ -14,7 +14,7 @@ type ConfigFile struct {
 
 func CheckHomeVariable() error {
 	if _, exists := os.LookupEnv("HOME"); !exists {
-		return errors.New("HOME environment variable is not defined")
+		return errors.New("$HOME environment variable is not defined")
 	}
 	return nil
 }
@@ -31,7 +31,7 @@ func ValidateConfigFolder() error {
 
 func VerifyNameExists(name string) error {
 	if _, err := os.Stat(filepath.Join(os.Getenv("HOME"), ".tp", fmt.Sprintf("%s.yaml", name))); !os.IsNotExist(err) {
-		return fmt.Errorf("location of name %s already exists", name)
+		return fmt.Errorf("location of name `%s` already exists", name)
 	}
 	return nil
 }

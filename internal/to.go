@@ -8,6 +8,7 @@ import (
 	"path/filepath"
 	"strings"
 
+	"github.com/fatih/color"
 	"gopkg.in/yaml.v2"
 )
 
@@ -43,10 +44,16 @@ func TeleportToLocation(name string) error {
 
 		stdout, err := cmd.StdoutPipe()
 		if err != nil {
+			fmt.Println()
+			color.New(color.FgRed).Add(color.BgWhite).Add(color.Bold).Printf("❌ %s failed to run.", command)
+			fmt.Println("\n")
 			return err
 		}
 
 		if err = cmd.Start(); err != nil {
+			fmt.Println()
+			color.New(color.FgRed).Add(color.BgWhite).Add(color.Bold).Printf("❌ %s failed to run.", command)
+			fmt.Println("\n")
 			return err
 		}
 
@@ -56,6 +63,9 @@ func TeleportToLocation(name string) error {
 			fmt.Println(output)
 		}
 		cmd.Wait()
+		fmt.Println()
+		color.New(color.FgGreen).Add(color.BgWhite).Add(color.Bold).Printf("✓ %s ran successfully.", command)
+		fmt.Println("\n")
 	}
 
 	return nil
