@@ -51,7 +51,7 @@ func ListLocations() error {
 	}
 
 	// Pretty prints the results
-	if len(listItems) > 1 {
+	if len(listItems) > 0 {
 		fmt.Println("Here's a list of all the locations set up:")
 		fmt.Print("Name")
 		fmt.Print(strings.Repeat(" ", (lengthiestName - len("Name"))))
