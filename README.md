@@ -25,7 +25,7 @@ There are two methods to installing tp:
 
 ### Installing through Homebrew
 
-To install through Homebrew, access the tap at `arashnrim/brew`:
+To install through Homebrew, access the tap at `arashnrim/tap`:
 
 ```
 brew install arashnrim/tap/tp
