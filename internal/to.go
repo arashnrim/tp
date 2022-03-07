@@ -18,7 +18,7 @@ func TeleportToLocation(name string) error {
 	}
 
 	if err := VerifyNameExists(name); err == nil {
-		return err
+		return fmt.Errorf("location `%s` does not exist", name)
 	}
 
 	data, rfErr := os.ReadFile(filepath.Join(os.Getenv("HOME"), ".tp", fmt.Sprintf("%s.yaml", name)))
@@ -35,6 +35,11 @@ func TeleportToLocation(name string) error {
 	commands := parsedData.Commands
 	if err := os.Chdir(location); err != nil {
 		return err
+	}
+
+	if len(commands) == 0 {
+		color.New(color.FgYellow).Add(color.Bold).Printf("Warning: no commands have been configured for %s\n", name)
+		color.New(color.FgHiWhite).Printf("Have you configured %s with commands to run?", filepath.Join(os.Getenv("HOME"), ".tp", fmt.Sprintf("%s.yaml", name)))
 	}
 
 	for _, command := range commands {
